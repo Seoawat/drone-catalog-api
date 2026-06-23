@@ -1,0 +1,49 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.3.5'
+	id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'ru.dronedemo'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// Веб + MVC + JSON
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	// JPA + Hibernate + Транзакции
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	// Валидация (@Valid, @NotBlank и т.д.)
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	// Lombok (сокращает код)
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	// PostgreSQL
+	runtimeOnly 'org.postgresql:postgresql'
+
+	// Автоперезагрузка при разработке
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	// Swagger / OpenAPI документация
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
+
+	// Тесты (включает JUnit, Mockito, AssertJ)
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
